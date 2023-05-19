@@ -1,0 +1,42 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   
+</head>
+
+<body>
+  
+    <h1>Login Successfully</h1>
+    
+     <!-- script to retrieve the access token from the url and send it to the $scope.SignInMS function in taskpane.js
+    via the messageParent function -->
+    <script>
+    
+            Office.onReady(function () {
+
+                var address_Link = window.location.href;
+                console.log(address_Link)
+                var address_arr = address_Link.split("=");
+                var address_Token = address_arr[1];
+                var Id_Token = address_Token.split("&");
+                var access_token = Id_Token[0];
+                console.log(access_token)
+                Office.context.ui.messageParent(access_token);
+
+            });
+     
+    </script>
+
+</body>
+
+</html>

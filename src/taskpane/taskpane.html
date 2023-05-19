@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- Using the latest version of Internet Explorer (Edge) to render the web page -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Email ADD-IN</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!-- Using Microsoft's Fluent UI -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"/>
+
+    <!-- Template styles -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-app="MsSignIn" ng-controller="SignInCtrl" id="MsSignIn">
+
+
+   <!-- Setting the toolbar colour and text -->
+    <md-toolbar style="background-color: #106EBE;color:#fff;">
+        <div class="md-toolbar-tools" ng-click="action()">
+          Send Email
+        </div>
+    </md-toolbar>
+
+    <div class="md-padding">
+
+     <!-- Button for Microsoft SignIn -->
+        <div layout="row" style="margin-top:200px" ng-show="Login_Btn">
+            <div flex="2"></div>
+            <div flex="98">
+                <!--  SignInMS() -> Razvan's part -->
+                <md-button class="md-raised" ng-click="SignInMS()"  style=" font-size: 14px !important; padding-left:10px !important;padding-right:30px !important"> 
+                    <div style="float:left; margin-top:6px;margin-left:10px; height:15px;">
+                        <!-- Defining a Scalable Vector Graphic (SVG), then creating the Microsoft Logo using 4 rectangles each using a different colour -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+                            <title>MS-SymbolLockup</title>
+                            <rect x="1" y="1" width="9" height="9" fill="#f25022"></rect>
+                            <rect x="1" y="11" width="9" height="9" fill="#00a4ef"></rect>
+                            <rect x="11" y="1" width="9" height="9" fill="#7fba00"></rect>
+                            <rect x="11" y="11" width="9" height="9" fill="#ffb900"></rect>
+                        </svg>
+                    </div>
+                    <div style="float:right; margin-left:1px;">Sign In with Microsoft</div>
+                </md-button>
+            </div>
+        </div>
+
+
+
+
+<!-- Input fields for email and phone numbner -->
+        <div ng-hide="Login_Btn" style="margin-top:150px">
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Email Address:</label>
+                <input type="email" ng-model="EmailAddress" ng-change="getEmail()"  > <!--  getEmail() -->
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Mobile Number:</label>
+                <input type="number" ng-model="mobile" id="phone" ng-change="getMobile()" ng-disabled="sms">  <!--  getMobile() -->
+            </md-input-container>
+         
+            <md-input-container class="md-block">
+                <md-checkbox name="sms" ng-model="sms"  ng-change="smsSend()"> <!--  smsSend() -->
+                   Don't Send SMS
+                </md-checkbox>
+                
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Side Note:</label>
+                <input type="text" ng-model="sideNote" ng-change="getSideNote()">
+              </md-input-container>
+          
+             
+            </md-input-container>
+         
+
+        </div>
+
+
+    </div>
+
+
+
+   
+    <!--Angular Material requires Angular.js Libraries-->
+    <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+    <!--Angular Material Library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+    <!--jquery script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+</body>
+</html>
